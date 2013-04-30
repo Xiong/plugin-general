@@ -16,4 +16,4 @@ use MooseX::Plugin::General;        # Plugins, addons, runtime extensions
 }
 
 pass( 'Load modules.' );
-diag( "Testing Devel::Toolbox $Devel::Toolbox::VERSION" );
+diag( "Testing MooseX::Plugin::General $MooseX::Plugin::General::VERSION" );
