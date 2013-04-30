@@ -35,7 +35,38 @@ This document describes MooseX::Plugin::General version v0.0.0
 
 =head1 SYNOPSIS
 
+    package My::Types;
+    use MooseX::Types -declare => [ 'MeatType' ];
+    subtype MeatType,
+        as      Object,
+        where   { $_->does('My::Meat::Role') },
+        message { 'Must load a plugin that consumes My::Meat::Role' };
+    
+    package My::Meat::Role;
+    use Moose::Role;
+    has 'fat' (
+        is              => 'ro',
+        isa             => 'Int',
+    );
+    
+    package My::Pork;
+    has '+fat' (
+        default         => 100,
+    );
+    
+    package My::Plate;
+    use My::Types qw| MeatType |;
     use MooseX::Plugin::General;
+    has 'meat'      => (
+        is              => 'ro',
+        isa             => MeatType,
+        coerce          => 1,
+    );
+    
+    package My::Menu;
+    my $dinner  = My::Plate->new( meat => 'Pork' );
+    say $dinner->dump;
+    # 
 
 =head1 DESCRIPTION
 
