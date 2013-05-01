@@ -11,14 +11,14 @@ use Test::More;
     subtype MeatType,
         as      Object,
         where   { $_->does('My::Meat::Role') },
-        message { 'Must load a plugin that consumes My::Meat::Role' };
+        message { 'Must load a plugin that consumes My::Role::Meat' };
     coerce MeatType,
         from Str,
         via { bless {}, 'My::Pork' };
         
 }
 {    
-    package My::Meat::Role;
+    package My::Role::Meat;
     use Moose::Role;
     has 'fat'       => (
         is              => 'ro',
@@ -28,7 +28,7 @@ use Test::More;
 {    
     package My::Pork;
     use Moose;
-    with 'My::Meat::Role';
+    with 'My::Role::Meat';
     has '+fat'      => (
         default         => 100,
     );

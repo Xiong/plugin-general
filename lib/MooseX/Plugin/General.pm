@@ -40,9 +40,9 @@ This document describes MooseX::Plugin::General version v0.0.0
     subtype MeatType,
         as      Object,
         where   { $_->does('My::Meat::Role') },
-        message { 'Must load a plugin that consumes My::Meat::Role' };
+        message { 'Must load a plugin that consumes My::Role::Meat' };
     
-    package My::Meat::Role;
+    package My::Role::Meat;
     use Moose::Role;
     has 'fat'       => (
         is              => 'ro',
@@ -50,6 +50,7 @@ This document describes MooseX::Plugin::General version v0.0.0
     );
     
     package My::Pork;
+    with 'My::Role::Meat';
     has '+fat'      => (
         default         => 100,
     );
