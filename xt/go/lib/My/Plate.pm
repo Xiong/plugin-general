@@ -12,17 +12,21 @@ use version; our $VERSION = qv('v0.0.0');
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-# Core modules
-
-# CPAN modules
-use Moose;
-
 # Alternate uses
 #~ use Devel::Comments '###', ({ -file => 'debug.log' });                   #~
 
 ## use
 #============================================================================#
 # CLASS DECLARATIONS
+
+use Moose;
+use My::Types qw| MeatType |;
+use MooseX::Plugin::General;
+has 'meat'      => (
+    is              => 'ro',
+    isa             => MeatType,
+    coerce          => 1,
+);
 
 #----------------------------------------------------------------------------#
 

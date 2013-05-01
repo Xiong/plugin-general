@@ -12,17 +12,18 @@ use version; our $VERSION = qv('v0.0.0');
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-# Core modules
-
-# CPAN modules
-use Moose;
-
 # Alternate uses
 #~ use Devel::Comments '###', ({ -file => 'debug.log' });                   #~
 
 ## use
 #============================================================================#
 # CLASS DECLARATIONS
+
+use Moose::Role;
+has 'fat'       => (
+    is              => 'ro',
+    isa             => 'Int',
+);
 
 #----------------------------------------------------------------------------#
 

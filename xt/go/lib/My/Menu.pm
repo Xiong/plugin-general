@@ -1,4 +1,4 @@
-package My::Pork;
+package My::Menu;
 use 5.016002;   # 5.16.2    # 2012  # __SUB__
 use strict;
 use warnings;
@@ -20,10 +20,10 @@ use version; our $VERSION = qv('v0.0.0');
 # CLASS DECLARATIONS
 
 use Moose;
-with 'My::Role::Meat';
-has '+fat'      => (
-    default         => 100,
-);
+use My::Plate;
+my $dinner  = My::Plate->new( meat => 'Pork' );
+say ( "$_: $dinner->{$_}" ) for keys %$dinner;
+say $dinner->dump;
 
 #----------------------------------------------------------------------------#
 

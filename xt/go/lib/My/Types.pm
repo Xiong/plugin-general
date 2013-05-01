@@ -12,17 +12,22 @@ use version; our $VERSION = qv('v0.0.0');
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-# Core modules
-
-# CPAN modules
-use Moose;
-
 # Alternate uses
 #~ use Devel::Comments '###', ({ -file => 'debug.log' });                   #~
 
 ## use
 #============================================================================#
 # CLASS DECLARATIONS
+
+use MooseX::Types::Moose qw| Str Object |;
+use MooseX::Types -declare => [ 'MeatType' ];
+subtype MeatType,
+    as      Object,
+    where   { $_->does('My::Meat::Role') },
+    message { 'Must load a plugin that consumes My::Role::Meat' };
+coerce MeatType,
+    from Str,
+    via { bless {}, 'My::Pork' };
 
 #----------------------------------------------------------------------------#
 
