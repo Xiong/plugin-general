@@ -44,13 +44,13 @@ This document describes MooseX::Plugin::General version v0.0.0
     
     package My::Meat::Role;
     use Moose::Role;
-    has 'fat' (
+    has 'fat'       => (
         is              => 'ro',
         isa             => 'Int',
     );
     
     package My::Pork;
-    has '+fat' (
+    has '+fat'      => (
         default         => 100,
     );
     
@@ -64,6 +64,7 @@ This document describes MooseX::Plugin::General version v0.0.0
     );
     
     package My::Menu;
+    use My::Plate;
     my $dinner  = My::Plate->new( meat => 'Pork' );
     say $dinner->dump;
     # 
