@@ -19,19 +19,25 @@ use version; our $VERSION = qv('v0.0.0');
 #============================================================================#
 # CLASS DECLARATIONS
 
+use Moose;
 use MooseX::Types::Moose qw| Str Object |;
 use MooseX::Types -declare => [ 'MeatType' ];
-subtype MeatType,
-    as      Object,
-    where   { $_->does('My::Meat::Role') },
-    message { 'Must load a plugin that consumes My::Role::Meat' };
+role_type MeatType,
+    {
+        role    => 'My::Role::Meat',
+        message => sub { 'Must load a plugin that consumes My::Role::Meat' },
+    };
 coerce MeatType,
     from Str,
-    via { bless {}, 'My::Pork' };
+    via \&_do_coerce;    # HACKY
 
 #----------------------------------------------------------------------------#
 
-
+sub _do_coerce {
+    say STDERR "Coerce: $_";
+    use My::Pork; 
+    My::Pork->new;
+};
 
 ## END MODULE
 1;

@@ -39,7 +39,7 @@ This document describes MooseX::Plugin::General version v0.0.0
     use MooseX::Types -declare => [ 'MeatType' ];
     subtype MeatType,
         as      Object,
-        where   { $_->does('My::Meat::Role') },
+        where   { $_->does('My::Role::Meat') },
         message { 'Must load a plugin that consumes My::Role::Meat' };
     
     package My::Role::Meat;
