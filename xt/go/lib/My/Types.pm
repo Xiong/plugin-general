@@ -20,8 +20,8 @@ use version; our $VERSION = qv('v0.0.0');
 # CLASS DECLARATIONS
 
 use Moose;
-use MooseX::Types::Moose qw| Str Object |;
-use MooseX::Types -declare => [ 'MeatType' ];
+use MooseX::Types::Moose       qw| Str Object   |;
+use MooseX::Types -declare => [qw| MeatType     |];
 role_type MeatType,
     {
         role    => 'My::Role::Meat',
@@ -34,8 +34,8 @@ coerce MeatType,
 #----------------------------------------------------------------------------#
 
 sub _do_coerce {
-    say STDERR "Coerce: $_";
-    use My::Pork; 
+#~     say STDERR "Coerce: $_";
+#~     use My::Pork; 
     My::Pork->new;
 };
 

@@ -7,5 +7,6 @@ use Test::More;
 use lib qw| t/lib |;
 
 use My::Menu;
+pass('execute');
 
 done_testing;
