@@ -1,0 +1,1 @@
+/home/xiong/projects/mx-plugin/xt/000/010-load.t
